@@ -36,8 +36,6 @@
 
     .rosa-flotante {
         position: absolute;
-        background-size: contain;
-        background-repeat: no-repeat;
         opacity: 0.6;
         pointer-events: none;
         animation: floatRose 12s infinite linear;
@@ -201,7 +199,6 @@
         transform: rotateX(180deg);
     }
 
-    /* Área de la carta con foto de fondo */
     .carta-mensaje {
         margin-top: 30px;
         background: #fffef7;
@@ -221,14 +218,9 @@
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-    }
-
-    /* Fondo con la foto de ella (se ve mientras el sobre está cerrado) */
-    .carta-mensaje {
         background-image: url('rosita.jpg');
     }
 
-    /* Overlay blanquecino que aparece cuando se abre el sobre (se pone encima de la foto) */
     .carta-mensaje::after {
         content: "";
         position: absolute;
@@ -247,18 +239,16 @@
         background-color: rgba(255, 248, 240, 0.88);
     }
 
-    /* Contenido del texto de la carta (aparece encima del overlay blanco) */
     .carta-contenido {
         position: relative;
         z-index: 2;
         padding: 22px 20px;
         font-family: 'Times New Roman', Times, serif;
-        color: #4c2a2a;
+        color: #000000;
         background: transparent;
         border-radius: 28px;
-        transition: all 0.3s;
-        opacity: 0;
         transition: opacity 0.3s ease;
+        opacity: 0;
     }
 
     .carta-mensaje.mostrar .carta-contenido {
@@ -267,7 +257,7 @@
 
     .carta-contenido h2 {
         font-family: 'Times New Roman', Times, serif;
-        color: #b13e5c;
+        color: #8b0000;
         font-size: 1.8rem;
         border-bottom: 2px solid #ffbf9b;
         display: inline-block;
@@ -280,10 +270,11 @@
     .carta-contenido p {
         font-size: 1rem;
         line-height: 1.55;
-        color: #3e2a2a;
+        color: #000000;
         margin-top: 12px;
         font-family: 'Times New Roman', Times, serif;
         white-space: pre-line;
+        font-weight: 500;
     }
 
     .corazon-rosa {
@@ -314,9 +305,6 @@
         #inicio h1 { font-size: 1.6rem; }
         .sub-rosa { font-size: 1rem; }
         .carta-mensaje { min-height: 420px; }
-        .carta-mensaje {
-            background-size: contain;
-        }
     }
 </style>
 </head>
@@ -465,6 +453,12 @@
             sobreAbierto = false;
         }
         if(cartaMensajeDiv) cartaMensajeDiv.classList.remove('mostrar');
+        
+        console.log('Imagen intentando cargar: rosita.jpg');
+        var testImg = new Image();
+        testImg.onload = function() { console.log('Imagen rosita.jpg cargada correctamente'); };
+        testImg.onerror = function() { console.log('ERROR: No se encontró rosita.jpg. Verifica que el archivo esté en la misma carpeta y se llame exactamente rosita.jpg'); };
+        testImg.src = 'rosita.jpg';
     });
 </script>
 
