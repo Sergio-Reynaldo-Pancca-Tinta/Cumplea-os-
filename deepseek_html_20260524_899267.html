@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Feliz Cumpleaños Carmen Rosa</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #2d1b2e;
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .rosas-fondo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: radial-gradient(circle at 10% 30%, #ffb7c5, #ff8a9f);
+        overflow: hidden;
+    }
+
+    .rosa-flotante {
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+        pointer-events: none;
+        animation: floatRose 12s infinite linear;
+        z-index: 0;
+    }
+
+    @keyframes floatRose {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.7;
+        }
+        90% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateY(-20vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .fondo-rosas-imagen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><path fill="%23ffffff" d="M50,15 C55,10 65,12 68,18 C72,24 68,34 62,36 C56,38 48,34 48,28 C48,22 45,18 50,15Z M30,45 C25,40 28,30 34,28 C40,26 48,30 48,36 C48,42 44,48 38,48 C32,48 33,48 30,45Z M72,52 C78,50 86,54 85,60 C84,66 78,68 72,66 C66,64 62,58 64,54 C66,50 68,53 72,52Z M20,75 C15,72 18,62 24,60 C30,58 38,62 36,68 C34,74 28,78 22,76 C18,74 23,77 20,75Z M80,30 C85,27 92,30 91,36 C90,42 84,44 78,42 C72,40 70,34 73,30 C76,26 78,31 80,30Z"/><circle cx="40" cy="80" r="4" fill="%23ffb7c5"/><circle cx="65" cy="15" r="3" fill="%23ff9eb5"/></svg>');
+        background-repeat: repeat;
+        background-size: 80px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .card-container {
+        position: relative;
+        z-index: 10;
+        max-width: 600px;
+        width: 100%;
+        background: rgba(255, 245, 240, 0.92);
+        backdrop-filter: blur(2px);
+        border-radius: 60px 60px 50px 50px;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 220, 200, 0.5), 0 0 0 12px #f7a1b5;
+        padding: 25px 20px 35px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    #inicio h1 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2.2rem;
+        background: linear-gradient(135deg, #b13e5c, #ff7b89);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 2px 2px 12px rgba(255,200,210,0.6);
+        margin-bottom: 20px;
+    }
+
+    .sub-rosa {
+        font-size: 1.2rem;
+        color: #a13e54;
+        background: #fff0f0d0;
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 60px;
+        margin-bottom: 35px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .boton {
+        background: linear-gradient(95deg, #e65975, #c73654);
+        color: white;
+        border: none;
+        padding: 16px 42px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: 0.25s;
+        box-shadow: 0 12px 18px -8px rgba(0,0,0,0.3);
+        letter-spacing: 2px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .boton:hover {
+        transform: scale(1.05);
+        background: linear-gradient(95deg, #ff6f8b, #dc2f54);
+        box-shadow: 0 18px 25px -8px rgba(180, 30, 60, 0.5);
+    }
+
+    #sobreContainer {
+        display: none;
+    }
+
+    .sobre-titulo {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2rem;
+        color: #b3415c;
+        background: rgba(255, 240, 235, 0.8);
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 40px;
+        margin-bottom: 20px;
+    }
+
+    .wrapper-sobre {
+        display: flex;
+        justify-content: center;
+        margin: 15px 0 10px;
+    }
+
+    .sobre {
+        width: 320px;
+        height: 220px;
+        position: relative;
+        cursor: pointer;
+        margin: 20px auto;
+        perspective: 800px;
+        transition: transform 0.2s;
+    }
+
+    .sobre:hover {
+        transform: translateY(-5px);
+    }
+
+    .base {
+        width: 100%;
+        height: 100%;
+        background: #e6b27a;
+        background-image: radial-gradient(circle at 30% 40%, #f5cf9b 2%, transparent 2.5%);
+        background-size: 18px 18px;
+        position: absolute;
+        bottom: 0;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
+        border: 2px solid #d99b54;
+        z-index: 1;
+    }
+
+    .tapa {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-top: 110px solid #e09e64;
+        transform-origin: top;
+        transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 12;
+        cursor: pointer;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+    }
+
+    .abierto .tapa {
+        transform: rotateX(180deg);
+    }
+
+    /* Área de la carta con foto de fondo */
+    .carta-mensaje {
+        margin-top: 30px;
+        background: #fffef7;
+        border-radius: 28px;
+        padding: 0;
+        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.15);
+        text-align: left;
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        visibility: hidden;
+        border: 1px solid #fad5b3;
+        position: relative;
+        overflow: hidden;
+        min-height: 480px;
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    /* Fondo con la foto de ella (se ve mientras el sobre está cerrado) */
+    .carta-mensaje {
+        background-image: url('rosita.jpg');
+    }
+
+    /* Overlay blanquecino que aparece cuando se abre el sobre (se pone encima de la foto) */
+    .carta-mensaje::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 248, 240, 0);
+        transition: background-color 0.4s ease;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: 28px;
+    }
+
+    .carta-mensaje.mostrar::after {
+        background-color: rgba(255, 248, 240, 0.88);
+    }
+
+    /* Contenido del texto de la carta (aparece encima del overlay blanco) */
+    .carta-contenido {
+        position: relative;
+        z-index: 2;
+        padding: 22px 20px;
+        font-family: 'Times New Roman', Times, serif;
+        color: #4c2a2a;
+        background: transparent;
+        border-radius: 28px;
+        transition: all 0.3s;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .carta-mensaje.mostrar .carta-contenido {
+        opacity: 1;
+    }
+
+    .carta-contenido h2 {
+        font-family: 'Times New Roman', Times, serif;
+        color: #b13e5c;
+        font-size: 1.8rem;
+        border-bottom: 2px solid #ffbf9b;
+        display: inline-block;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .carta-contenido p {
+        font-size: 1rem;
+        line-height: 1.55;
+        color: #3e2a2a;
+        margin-top: 12px;
+        font-family: 'Times New Roman', Times, serif;
+        white-space: pre-line;
+    }
+
+    .corazon-rosa {
+        margin-top: 25px;
+        font-size: 1.5rem;
+        letter-spacing: 5px;
+        color: #f05a7a;
+    }
+
+    .tooltip-click {
+        background: #ffded3;
+        color: #b34a61;
+        border-radius: 60px;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-top: 15px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: 0.2s;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    @media (max-width: 500px) {
+        .sobre { width: 280px; height: 190px; }
+        .tapa { border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 95px solid #e09e64; }
+        .carta-contenido p { font-size: 0.9rem; }
+        #inicio h1 { font-size: 1.6rem; }
+        .sub-rosa { font-size: 1rem; }
+        .carta-mensaje { min-height: 420px; }
+        .carta-mensaje {
+            background-size: contain;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="rosas-fondo">
+    <div class="fondo-rosas-imagen"></div>
+</div>
+
+<div class="card-container" id="mainCard">
+    <div id="inicio">
+        <h1>🌹 ¡Feliz Cumpleaños, Carmen Rosa! 🌹</h1>
+        <div class="sub-rosa">✨ Una amiga que florece cada día ✨</div>
+        <button class="boton" id="btnMostrarSobre">🌸 Abrir sorpresa 🌸</button>
+        <div class="corazon-rosa" style="margin-top:35px;">🌺💖🌺</div>
+    </div>
+
+    <div id="sobreContainer">
+        <div class="sobre-titulo">💌 Carta Secreta 💌</div>
+        <div class="wrapper-sobre">
+            <div class="sobre" id="sobre">
+                <div class="tapa"></div>
+                <div class="base"></div>
+            </div>
+        </div>
+        <div class="tooltip-click" id="mensajeAyuda">
+            ✨ Haz click en el sobre para descubrir el mensaje ✨
+        </div>
+        <div class="carta-mensaje" id="cartaTexto">
+            <div class="carta-contenido">
+                <h2>🌷 Querida Carmen Rosa 🌷</h2>
+                <p>
+                    ¡Feliz cumpleaños amiga! 🎂<br><br>
+                    Eres como una rosa en el jardín de la vida: hermosa, única y con espinas (me acuerdo cuando me "golpeabas", se extraña jajaja 😂).<br><br>
+                    Gracias por cada sonrisa compartida, por esos recuerdos que atesoro. En tu día especial, deseo que la felicidad te abrace fuerte, que nunca te falten motivos para reír y que cada sueño se convierta en pétalo de flor. 🌸<br><br>
+                    Disfruta cada momento, porque te mereces todo el amor del mundo. <strong>¡Rosita!</strong> 💖<br><br>
+                    Con cariño, tu amigo que te olvidaste. ✨
+                </p>
+                <div style="text-align:center; margin-top:12px;">🌹🎀🌹</div>
+            </div>
+        </div>
+        <div class="corazon-rosa">🌺🌸🌼🌸🌺</div>
+    </div>
+</div>
+
+<script>
+    function crearRosasFlotantes() {
+        const fondoDiv = document.querySelector('.rosas-fondo');
+        const rosasArray = ['🌹', '🌸', '🌺', '🌷', '🥀', '💮', '🏵️', '🌸'];
+        for (let i = 0; i < 35; i++) {
+            let rosa = document.createElement('div');
+            rosa.classList.add('rosa-flotante');
+            let randomEmoji = rosasArray[Math.floor(Math.random() * rosasArray.length)];
+            rosa.innerHTML = `<span style="font-size: ${Math.random() * 28 + 20}px; display:inline-block;">${randomEmoji}</span>`;
+            rosa.style.left = Math.random() * 100 + '%';
+            rosa.style.animationDuration = Math.random() * 12 + 8 + 's';
+            rosa.style.animationDelay = Math.random() * 15 + 's';
+            rosa.style.opacity = Math.random() * 0.5 + 0.2;
+            fondoDiv.appendChild(rosa);
+        }
+    }
+
+    let sobreAbierto = false;
+    const btnAbrir = document.getElementById('btnMostrarSobre');
+    const inicioDiv = document.getElementById('inicio');
+    const sobreContainer = document.getElementById('sobreContainer');
+    const sobreElement = document.getElementById('sobre');
+    const cartaMensajeDiv = document.getElementById('cartaTexto');
+    const tooltipElem = document.getElementById('mensajeAyuda');
+
+    function mostrarSobre() {
+        inicioDiv.style.display = 'none';
+        sobreContainer.style.display = 'block';
+        sobreElement.classList.remove('abierto');
+        sobreAbierto = false;
+        cartaMensajeDiv.classList.remove('mostrar');
+        if (tooltipElem) {
+            tooltipElem.innerHTML = '✨ Haz click en el sobre para descubrir el mensaje ✨';
+            tooltipElem.style.opacity = '1';
+            tooltipElem.style.background = "#ffded3";
+        }
+    }
+
+    function abrirSobreMostrarCarta() {
+        if (sobreAbierto) return;
+        sobreElement.classList.add('abierto');
+        sobreAbierto = true;
+        cartaMensajeDiv.classList.add('mostrar');
+        if (tooltipElem) {
+            tooltipElem.innerHTML = '💗 ¡Mensaje desplegado! Feliz día Carmen Rosa 💗';
+            tooltipElem.style.background = "#ffc4d4";
+        }
+        crearConfetiMoment();
+    }
+
+    function crearConfetiMoment() {
+        const confetiContainer = document.createElement('div');
+        confetiContainer.style.position = 'fixed';
+        confetiContainer.style.top = '0';
+        confetiContainer.style.left = '0';
+        confetiContainer.style.width = '100%';
+        confetiContainer.style.height = '100%';
+        confetiContainer.style.pointerEvents = 'none';
+        confetiContainer.style.zIndex = '999';
+        document.body.appendChild(confetiContainer);
+        for (let i = 0; i < 80; i++) {
+            let conf = document.createElement('div');
+            conf.innerHTML = ['🌸','🌹','💖','✨','🎀','🌺'][Math.floor(Math.random()*6)];
+            conf.style.position = 'absolute';
+            conf.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.top = '-20px';
+            conf.style.opacity = '0.9';
+            conf.style.animation = `caidaConfeti ${Math.random() * 2 + 1.5}s linear forwards`;
+            conf.style.animationDelay = Math.random() * 0.5 + 's';
+            confetiContainer.appendChild(conf);
+        }
+        if (!document.querySelector('#confetiKeyframe')) {
+            const styleSheet = document.createElement("style");
+            styleSheet.id = "confetiKeyframe";
+            styleSheet.textContent = `
+                @keyframes caidaConfeti {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+        setTimeout(() => {
+            if(confetiContainer) confetiContainer.remove();
+        }, 2800);
+    }
+
+    btnAbrir.addEventListener('click', mostrarSobre);
+    
+    sobreElement.addEventListener('click', function(e) {
+        if (sobreContainer.style.display === 'block') {
+            abrirSobreMostrarCarta();
+        }
+    });
+
+    window.addEventListener('load', function() {
+        crearRosasFlotantes();
+        if (sobreElement) {
+            sobreElement.classList.remove('abierto');
+            sobreAbierto = false;
+        }
+        if(cartaMensajeDiv) cartaMensajeDiv.classList.remove('mostrar');
+    });
+</script>
+
+</body>
+</html>
