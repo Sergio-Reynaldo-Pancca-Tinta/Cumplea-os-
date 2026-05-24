@@ -23,6 +23,7 @@
         overflow-x: hidden;
     }
 
+    /* Fondo de rosas y decoración */
     .rosas-fondo {
         position: fixed;
         top: 0;
@@ -34,24 +35,24 @@
         overflow: hidden;
     }
 
-    .rosa-flotante {
+    .rosa-flotante, .corazon-flotante, .globo-flotante {
         position: absolute;
-        opacity: 0.6;
+        opacity: 0.7;
         pointer-events: none;
-        animation: floatRose 12s infinite linear;
+        animation: floatElement 14s infinite linear;
         z-index: 0;
     }
 
-    @keyframes floatRose {
+    @keyframes floatElement {
         0% {
             transform: translateY(100vh) rotate(0deg);
             opacity: 0;
         }
         10% {
-            opacity: 0.7;
+            opacity: 0.8;
         }
         90% {
-            opacity: 0.5;
+            opacity: 0.6;
         }
         100% {
             transform: translateY(-20vh) rotate(360deg);
@@ -75,12 +76,12 @@
     .card-container {
         position: relative;
         z-index: 10;
-        max-width: 560px;
+        max-width: 580px;
         width: 100%;
-        background: rgba(255, 245, 240, 0.92);
+        background: rgba(255, 245, 240, 0.94);
         backdrop-filter: blur(2px);
         border-radius: 60px 60px 50px 50px;
-        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 220, 200, 0.5), 0 0 0 12px #f7a1b5;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 220, 200, 0.6), 0 0 0 14px #f7a1b5;
         padding: 25px 20px 35px;
         transition: all 0.3s ease;
         text-align: center;
@@ -88,7 +89,7 @@
 
     #inicio h1 {
         font-family: 'Times New Roman', Times, serif;
-        font-size: 2.2rem;
+        font-size: 2.3rem;
         background: linear-gradient(135deg, #b13e5c, #ff7b89);
         background-clip: text;
         -webkit-background-clip: text;
@@ -98,15 +99,16 @@
     }
 
     .sub-rosa {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: #a13e54;
         background: #fff0f0d0;
         display: inline-block;
-        padding: 8px 20px;
+        padding: 8px 25px;
         border-radius: 60px;
         margin-bottom: 35px;
         font-weight: bold;
         font-family: 'Times New Roman', Times, serif;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .boton {
@@ -138,11 +140,12 @@
         font-family: 'Times New Roman', Times, serif;
         font-size: 2rem;
         color: #b3415c;
-        background: rgba(255, 240, 235, 0.8);
+        background: rgba(255, 240, 235, 0.9);
         display: inline-block;
-        padding: 5px 20px;
+        padding: 5px 25px;
         border-radius: 40px;
         margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .wrapper-sobre {
@@ -152,8 +155,8 @@
     }
 
     .sobre {
-        width: 320px;
-        height: 220px;
+        width: 360px;
+        height: 250px;
         position: relative;
         cursor: pointer;
         margin: 20px auto;
@@ -179,32 +182,45 @@
         z-index: 1;
     }
 
-    /* Foto pegada en el sobre (en el área marrón) */
+    /* Foto más grande pegada en el sobre */
     .foto-sobre {
         position: absolute;
-        bottom: 15px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
-        width: 100px;
-        height: 116px;
+        width: 140px;
+        height: 163px;
         background-image: url('rosita.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border-radius: 12px;
-        border: 3px solid #fff8f0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        border-radius: 16px;
+        border: 4px solid #fff8f0;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
         z-index: 5;
         transition: all 0.3s ease;
     }
 
+    /* Decoración de corazones alrededor del sobre */
+    .decoracion-sobre {
+        position: absolute;
+        top: -30px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 1.8rem;
+        letter-spacing: 8px;
+        color: #ff4d6d;
+        z-index: 6;
+        pointer-events: none;
+    }
+
     /* Ajuste para móviles */
-    @media (max-width: 500px) {
-        .foto-sobre {
-            width: 80px;
-            height: 93px;
-            bottom: 12px;
-        }
+    @media (max-width: 550px) {
+        .sobre { width: 300px; height: 210px; }
+        .foto-sobre { width: 110px; height: 128px; bottom: 15px; }
+        .decoracion-sobre { font-size: 1.3rem; top: -25px; }
+        .tapa { border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 105px solid #e09e64; }
     }
 
     .tapa {
@@ -213,9 +229,9 @@
         left: 0;
         width: 0;
         height: 0;
-        border-left: 160px solid transparent;
-        border-right: 160px solid transparent;
-        border-top: 110px solid #e09e64;
+        border-left: 180px solid transparent;
+        border-right: 180px solid transparent;
+        border-top: 125px solid #e09e64;
         transform-origin: top;
         transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
         z-index: 12;
@@ -227,10 +243,10 @@
         transform: rotateX(180deg);
     }
 
-    /* Cuando el sobre está abierto, la foto se desvanece un poco */
+    /* Cuando el sobre está abierto, la foto se opaca un poco pero sigue visible */
     .abierto .foto-sobre {
-        opacity: 0.3;
-        filter: grayscale(0.3);
+        opacity: 0.4;
+        filter: grayscale(0.2);
     }
 
     .carta-mensaje {
@@ -238,7 +254,7 @@
         background: #fffef7;
         background-image: linear-gradient(to bottom, #fffaf2, #fff2e6);
         border-radius: 28px;
-        padding: 22px 20px;
+        padding: 25px 22px;
         box-shadow: 0 12px 22px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255,255,200,0.8);
         text-align: left;
         transition: all 0.4s ease;
@@ -256,8 +272,8 @@
 
     .carta-mensaje h2 {
         font-family: 'Times New Roman', Times, serif;
-        color: #8b0000;
-        font-size: 1.8rem;
+        color: #b13e5c;
+        font-size: 1.9rem;
         border-bottom: 2px solid #ffbf9b;
         display: inline-block;
         margin-bottom: 15px;
@@ -267,9 +283,9 @@
     }
 
     .carta-mensaje p {
-        font-size: 1rem;
-        line-height: 1.55;
-        color: #000000;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #2c1810;
         margin-top: 12px;
         font-family: 'Times New Roman', Times, serif;
         white-space: pre-line;
@@ -277,31 +293,16 @@
 
     .corazon-rosa {
         margin-top: 25px;
-        font-size: 1.5rem;
-        letter-spacing: 5px;
+        font-size: 1.8rem;
+        letter-spacing: 8px;
         color: #f05a7a;
     }
 
-    .tooltip-click {
-        background: #ffded3;
-        color: #b34a61;
-        border-radius: 60px;
-        padding: 8px 18px;
-        font-size: 0.9rem;
-        display: inline-block;
-        margin-top: 15px;
-        font-weight: bold;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        transition: 0.2s;
-        font-family: 'Times New Roman', Times, serif;
-    }
-
     @media (max-width: 500px) {
-        .sobre { width: 280px; height: 190px; }
-        .tapa { border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 95px solid #e09e64; }
-        .carta-mensaje p { font-size: 0.9rem; }
-        #inicio h1 { font-size: 1.6rem; }
+        .carta-mensaje p { font-size: 0.95rem; }
+        #inicio h1 { font-size: 1.8rem; }
         .sub-rosa { font-size: 1rem; }
+        .corazon-rosa { font-size: 1.4rem; letter-spacing: 5px; }
     }
 </style>
 </head>
@@ -316,7 +317,7 @@
         <h1>🌹 ¡Feliz Cumpleaños, Carmen Rosa! 🌹</h1>
         <div class="sub-rosa">✨ Una amiga que florece cada día ✨</div>
         <button class="boton" id="btnMostrarSobre">🌸 Abrir sorpresa 🌸</button>
-        <div class="corazon-rosa" style="margin-top:35px;">🌺💖🌺</div>
+        <div class="corazon-rosa" style="margin-top:35px;">💖🌺💖🌺💖</div>
     </div>
 
     <div id="sobreContainer">
@@ -326,13 +327,11 @@
                 <div class="tapa"></div>
                 <div class="base"></div>
                 <div class="foto-sobre" id="fotoSobre"></div>
+                <div class="decoracion-sobre">💖🎂💖🎈💖</div>
             </div>
         </div>
-        <div class="tooltip-click" id="mensajeAyuda">
-            ✨ Haz click en el sobre ✨
-        </div>
         <div class="carta-mensaje" id="cartaTexto">
-            <h2>🌷 Querida amiga Rosita 🌷</h2>
+            <h2>🌷 Querida Carmen Rosa 🌷</h2>
             <p>
                 ¡Feliz cumpleaños amiga! 🎂<br><br>
                 Eres como una rosa en el jardín de la vida: hermosa, única y con espinas (me acuerdo cuando me "golpeabas", se extraña jajaja 😂).<br><br>
@@ -340,26 +339,35 @@
                 Disfruta cada momento, porque te mereces todo el amor del mundo. <strong>¡Rosita!</strong> 💖<br><br>
                 Con cariño, tu amigo que te olvidaste. ✨
             </p>
-            <div style="text-align:center; margin-top:12px;">🌹🎀🌹</div>
+            <div style="text-align:center; margin-top:16px;">🎀🌹🎂🌹🎀</div>
         </div>
-        <div class="corazon-rosa">🌺🌸🌼🌸🌺</div>
+        <div class="corazon-rosa">🌺💖🌸💖🌺</div>
     </div>
 </div>
 
 <script>
-    function crearRosasFlotantes() {
+    function crearElementosFlotantes() {
         const fondoDiv = document.querySelector('.rosas-fondo');
-        const rosasArray = ['🌹', '🌸', '🌺', '🌷', '🥀', '💮', '🏵️', '🌸'];
-        for (let i = 0; i < 35; i++) {
-            let rosa = document.createElement('div');
-            rosa.classList.add('rosa-flotante');
-            let randomEmoji = rosasArray[Math.floor(Math.random() * rosasArray.length)];
-            rosa.innerHTML = `<span style="font-size: ${Math.random() * 28 + 20}px; display:inline-block;">${randomEmoji}</span>`;
-            rosa.style.left = Math.random() * 100 + '%';
-            rosa.style.animationDuration = Math.random() * 12 + 8 + 's';
-            rosa.style.animationDelay = Math.random() * 15 + 's';
-            rosa.style.opacity = Math.random() * 0.5 + 0.2;
-            fondoDiv.appendChild(rosa);
+        const elementos = ['🌹', '🌸', '🌺', '💖', '❤️', '🎂', '🎈', '🎀', '✨'];
+        
+        for (let i = 0; i < 50; i++) {
+            let elemento = document.createElement('div');
+            let tipo = elementos[Math.floor(Math.random() * elementos.length)];
+            
+            if (tipo === '🌹' || tipo === '🌸' || tipo === '🌺') {
+                elemento.classList.add('rosa-flotante');
+            } else if (tipo === '💖' || tipo === '❤️') {
+                elemento.classList.add('corazon-flotante');
+            } else {
+                elemento.classList.add('globo-flotante');
+            }
+            
+            elemento.innerHTML = `<span style="font-size: ${Math.random() * 28 + 18}px; display:inline-block;">${tipo}</span>`;
+            elemento.style.left = Math.random() * 100 + '%';
+            elemento.style.animationDuration = Math.random() * 14 + 9 + 's';
+            elemento.style.animationDelay = Math.random() * 18 + 's';
+            elemento.style.opacity = Math.random() * 0.6 + 0.3;
+            fondoDiv.appendChild(elemento);
         }
     }
 
@@ -369,7 +377,6 @@
     const sobreContainer = document.getElementById('sobreContainer');
     const sobreElement = document.getElementById('sobre');
     const cartaMensajeDiv = document.getElementById('cartaTexto');
-    const tooltipElem = document.getElementById('mensajeAyuda');
 
     function mostrarSobre() {
         inicioDiv.style.display = 'none';
@@ -377,11 +384,6 @@
         sobreElement.classList.remove('abierto');
         sobreAbierto = false;
         cartaMensajeDiv.classList.remove('mostrar');
-        if (tooltipElem) {
-            tooltipElem.innerHTML = '✨ Haz click en el sobre para descubrir el mensaje ✨';
-            tooltipElem.style.opacity = '1';
-            tooltipElem.style.background = "#ffded3";
-        }
     }
 
     function abrirSobreMostrarCarta() {
@@ -389,14 +391,10 @@
         sobreElement.classList.add('abierto');
         sobreAbierto = true;
         cartaMensajeDiv.classList.add('mostrar');
-        if (tooltipElem) {
-            tooltipElem.innerHTML = '💗 ¡Mensaje desplegado! Feliz día Carmen Rosa 💗';
-            tooltipElem.style.background = "#ffc4d4";
-        }
-        crearConfetiMoment();
+        crearConfetiCumpleanos();
     }
 
-    function crearConfetiMoment() {
+    function crearConfetiCumpleanos() {
         const confetiContainer = document.createElement('div');
         confetiContainer.style.position = 'fixed';
         confetiContainer.style.top = '0';
@@ -406,18 +404,22 @@
         confetiContainer.style.pointerEvents = 'none';
         confetiContainer.style.zIndex = '999';
         document.body.appendChild(confetiContainer);
-        for (let i = 0; i < 80; i++) {
+        
+        const confetis = ['🌸','🌹','💖','✨','🎀','🌺','🎂','🎈','❤️'];
+        
+        for (let i = 0; i < 120; i++) {
             let conf = document.createElement('div');
-            conf.innerHTML = ['🌸','🌹','💖','✨','🎀','🌺'][Math.floor(Math.random()*6)];
+            conf.innerHTML = confetis[Math.floor(Math.random() * confetis.length)];
             conf.style.position = 'absolute';
-            conf.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            conf.style.fontSize = (Math.random() * 22 + 14) + 'px';
             conf.style.left = Math.random() * 100 + '%';
-            conf.style.top = '-20px';
+            conf.style.top = '-30px';
             conf.style.opacity = '0.9';
-            conf.style.animation = `caidaConfeti ${Math.random() * 2 + 1.5}s linear forwards`;
-            conf.style.animationDelay = Math.random() * 0.5 + 's';
+            conf.style.animation = `caidaConfeti ${Math.random() * 2.5 + 1.5}s linear forwards`;
+            conf.style.animationDelay = Math.random() * 0.6 + 's';
             confetiContainer.appendChild(conf);
         }
+        
         if (!document.querySelector('#confetiKeyframe')) {
             const styleSheet = document.createElement("style");
             styleSheet.id = "confetiKeyframe";
@@ -429,9 +431,10 @@
             `;
             document.head.appendChild(styleSheet);
         }
+        
         setTimeout(() => {
             if(confetiContainer) confetiContainer.remove();
-        }, 2800);
+        }, 3200);
     }
 
     btnAbrir.addEventListener('click', mostrarSobre);
@@ -443,17 +446,17 @@
     });
 
     window.addEventListener('load', function() {
-        crearRosasFlotantes();
+        crearElementosFlotantes();
         if (sobreElement) {
             sobreElement.classList.remove('abierto');
             sobreAbierto = false;
         }
         if(cartaMensajeDiv) cartaMensajeDiv.classList.remove('mostrar');
         
-        // Verificar si la imagen se carga
+        // Verificar carga de imagen
         var testImg = new Image();
         testImg.onload = function() { console.log('✅ rosita.jpg cargada correctamente'); };
-        testImg.onerror = function() { console.log('❌ ERROR: No se encuentra rosita.jpg. Verifica que el archivo esté en la misma carpeta'); };
+        testImg.onerror = function() { console.log('❌ ERROR: No se encuentra rosita.jpg. Asegúrate de que el archivo esté en la misma carpeta'); };
         testImg.src = 'rosita.jpg';
     });
 </script>
